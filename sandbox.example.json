@@ -1,0 +1,35 @@
+{
+	"enabled": false,
+	"backend": "container",
+	"container": {
+		"engine": "docker",
+		"image": "ubuntu:24.04",
+		"network": "none",
+		"shell": "bash",
+		"pullPolicy": "if-missing",
+		"runArgs": ["--memory", "4g", "--cpus", "4"],
+		"env": {
+			"CI": "1"
+		}
+	},
+	"runtime": {
+		"network": {
+			"allowedDomains": ["github.com", "*.github.com"],
+			"deniedDomains": []
+		},
+		"filesystem": {
+			"denyRead": ["~/.ssh", "~/.aws"],
+			"allowWrite": [".", "/tmp"],
+			"denyWrite": [".env", ".env.*"]
+		}
+	},
+	"hooks": {
+		"preInit": [],
+		"postInit": [],
+		"containerInit": ["echo 'container initialized' > /tmp/pi-sandbox-init.log"],
+		"preCommand": [],
+		"postShutdown": [],
+		"failOnError": true,
+		"timeoutSec": 120
+	}
+}

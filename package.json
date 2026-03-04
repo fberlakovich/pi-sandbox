@@ -1,0 +1,43 @@
+{
+	"name": "pi-sandbox",
+	"version": "0.1.0",
+	"description": "Dual-backend sandbox extension for pi (container + runtime)",
+	"type": "module",
+	"license": "UNLICENSED",
+	"pi": {
+		"extensions": [
+			"./index.ts"
+		]
+	},
+	"files": [
+		"index.ts",
+		"config.ts",
+		"process.ts",
+		"container-engine.ts",
+		"README.md",
+		"sandbox.example.json"
+	],
+	"scripts": {
+		"test": "tsx --test tests/**/*.test.ts",
+		"test:unit": "tsx --test tests/unit/**/*.test.ts",
+		"test:integration": "tsx --test tests/integration/**/*.test.ts",
+		"typecheck": "tsc -p tsconfig.json --noEmit",
+		"lint": "biome check . && npm run typecheck",
+		"format": "biome format --write .",
+		"check": "npm run lint && npm test"
+	},
+	"dependencies": {
+		"@anthropic-ai/sandbox-runtime": "^0.0.39",
+		"@sinclair/typebox": "^0.34.48"
+	},
+	"peerDependencies": {
+		"@mariozechner/pi-coding-agent": ">=0.56.0"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^2.4.5",
+		"@mariozechner/pi-coding-agent": "^0.56.1",
+		"@types/node": "^25.3.3",
+		"tsx": "^4.21.0",
+		"typescript": "^5.9.3"
+	}
+}
